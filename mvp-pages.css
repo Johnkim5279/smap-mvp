@@ -1,0 +1,18 @@
+.mvp-page { padding: 18px; min-height: 760px; background: #fbfdff; }
+.mvp-page-head { display: flex; align-items: start; justify-content: space-between; gap: 20px; padding-bottom: 18px; border-bottom: 1px solid #dbe7f4; }
+.mvp-page-head h1 { margin: 0; color: #092954; font-size: 26px; letter-spacing: -1.5px; }
+.mvp-page-head p { margin: 7px 0 0; color: #697b95; font-size: 12px; }
+.mvp-search { display: flex; width: 290px; overflow: hidden; border: 1px solid #b7d1ee; border-radius: 7px; background: #fff; }
+.mvp-search input { width: 100%; border: 0; padding: 10px; outline: 0; font-size: 11px; }
+.mvp-search button { width: 45px; border: 0; background: #062653; color: #fff; font-weight: 800; cursor: pointer; }
+.mvp-summary { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 16px 0; }
+.mvp-summary article { padding: 13px; border: 1px solid #c7dcf2; border-radius: 9px; background: #fff; }
+.mvp-summary b { display: block; color: #0865d8; font-size: 21px; }.mvp-summary span { color: #687a92; font-size: 10px; }
+.mvp-layout { display: grid; grid-template-columns: minmax(0, 1.65fr) minmax(270px, .85fr); gap: 12px; }
+.mvp-catalog, .mvp-detail { padding: 15px; border: 1px solid #c7dcf2; border-radius: 11px; background: #fff; }.mvp-catalog h2, .mvp-detail h2 { margin: 0; color: #102a4d; font-size: 16px; }
+.mvp-catalog > p, .mvp-detail > p { margin: 7px 0 14px; color: #71829a; font-size: 10px; }
+.mvp-cards { display: grid; grid-template-columns: repeat(2, 1fr); gap: 9px; }.mvp-card { min-height: 135px; padding: 14px; border: 1px solid #d1e0f1; border-radius: 9px; background: #f9fbff; text-align: left; cursor: pointer; transition: .15s ease; }.mvp-card:hover, .mvp-card.active { border-color: #0865d8; background: #edf6ff; box-shadow: 0 5px 15px #0a68d31a; transform: translateY(-1px); }.mvp-card i { display: grid; place-items: center; width: 36px; height: 36px; margin-bottom: 11px; border-radius: 8px; background: #dcecff; color: #0865d8; font-style: normal; font-size: 17px; }.mvp-card b { display: block; color: #102a4d; font-size: 14px; }.mvp-card small { display: block; margin-top: 5px; color: #71829a; font-size: 9px; line-height: 1.5; }
+.mvp-detail { background: linear-gradient(145deg, #f5faff, #fff); }.detail-label { color: #0865d8; font-size: 9px; font-weight: 800; letter-spacing: 1px; }.detail-company { display: grid; gap: 9px; margin-top: 18px; }.detail-company div { padding: 10px; border-left: 3px solid #0a67dc; background: #fff; }.detail-company b { display: block; font-size: 10px; }.detail-company span { color: #71829a; font-size: 9px; }
+.relation-flow { display: flex; align-items: stretch; gap: 5px; margin-top: 17px; }.relation-flow div { flex: 1; padding: 8px; border-radius: 7px; background: #eaf4ff; color: #123b6b; font-size: 9px; text-align: center; }.relation-flow i { align-self: center; color: #0a67dc; font-style: normal; }
+.mvp-back { margin-top: 16px; border: 1px solid #b8d1ed; border-radius: 7px; padding: 8px 12px; background: #fff; color: #0865d8; font-size: 10px; font-weight: 700; cursor: pointer; }
+@media (max-width: 800px) { .mvp-page-head { flex-direction: column; }.mvp-search { width: 100%; }.mvp-layout { grid-template-columns: 1fr; }.mvp-page { min-height: 0; }.mvp-summary { grid-template-columns: 1fr 1fr; } }

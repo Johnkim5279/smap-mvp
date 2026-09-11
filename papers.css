@@ -1,0 +1,10 @@
+.span-3 { grid-column: span 3; }
+.paper-card .card-title > span { color: #64728b; font-size: 9px; }
+.paper-list { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 8px; }
+.paper-list a { min-width: 0; padding: 9px; border: 1px solid #d3e1f2; border-radius: 6px; background: #f9fbff; color: #182744; text-decoration: none; transition: .15s ease; }
+.paper-list a:hover { border-color: #0764d8; box-shadow: 0 4px 12px #0a68d31c; transform: translateY(-1px); }
+.paper-list b { display: block; overflow: hidden; font-size: 9px; line-height: 1.35; text-overflow: ellipsis; white-space: nowrap; }
+.paper-list small, .paper-list em { display: block; margin-top: 4px; color: #64728b; font-size: 7px; font-style: normal; line-height: 1.35; }
+.paper-list em { color: #0764d8; }
+@media (max-width: 900px) { .span-3 { grid-column: span 2; } .paper-list { grid-template-columns: 1fr; } }
+@media (max-width: 580px) { .span-3 { grid-column: span 1; } }

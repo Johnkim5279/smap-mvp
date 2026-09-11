@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: smap-mvp
+    runtime: node
+    buildCommand: ""
+    startCommand: "node server.mjs"
+    autoDeploy: false
