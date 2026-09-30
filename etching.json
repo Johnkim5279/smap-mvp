@@ -1,0 +1,31 @@
+{
+  "name": "식각",
+  "summary": "식각 공정을 선택하면 관련 장비, 소재, 부품, 기업 정보를 관계 맵에서 단계적으로 탐색할 수 있습니다.",
+  "overview": "식각은 웨이퍼 위에 형성된 막을 선택적으로 제거해 원하는 회로 패턴을 만드는 공정입니다.",
+  "links": [
+    {"name": "장비", "description": "식각 공정에 사용하는 장비 정보"},
+    {"name": "소재", "description": "식각 공정에 사용하는 가스와 화학 소재"},
+    {"name": "부품", "description": "장비 구동과 공정 제어에 필요한 핵심 부품"},
+    {"name": "기업", "description": "장비·소재·부품 분야의 관련 기업 정보"}
+  ],
+  "equipment": [
+    {"name": "식각 장비", "description": "Dry Etcher 예시 · LAM Research"},
+    {"name": "플라즈마 식각기", "description": "TEL (Tokyo Electron) 예시"},
+    {"name": "ICP 식각 시스템", "description": "AMAT 예시"}
+  ],
+  "materials": [
+    {"name": "식각 가스", "description": "식각 반응을 위해 사용하는 공정 가스"},
+    {"name": "화학 소재", "description": "세정과 공정 조건 제어에 쓰이는 소재"}
+  ],
+  "parts": [
+    {"name": "ESC", "description": "웨이퍼를 고정하고 온도를 제어하는 부품"},
+    {"name": "Valve", "description": "가스 흐름을 제어하는 부품"},
+    {"name": "RF Generator", "description": "플라즈마 생성을 위한 전력을 공급하는 장치"}
+  ],
+  "companies": [
+    {"name": "LAM Research", "description": "식각 장비 관련 예시 기업"},
+    {"name": "TEL", "description": "식각 장비 관련 예시 기업"},
+    {"name": "삼성전자", "description": "반도체 제조 관련 예시 기업"},
+    {"name": "SK하이닉스", "description": "메모리 반도체 관련 예시 기업"}
+  ]
+}
