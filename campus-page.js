@@ -9,13 +9,14 @@
   const labels=['학과 소개','교과목','실습사진','실습장비','교수진','진로·취업'];
   let selected=data[0], active=0;
   const list=document.querySelector('#departments'),detail=document.querySelector('#detail');
-  function cards(items,copy){return `<div class="cards">${items.map(name=>`<article class="card"><h3>${name}</h3><p>${copy}</p></article>`).join('')}</div>`;}
+  function cards(items,copy){return `<div class="cards">${items.map((name,i)=>`<article class="card"><span class="item-number">0${i+1}</span><h3>${name}</h3><p>${copy}</p>${active===1?`<button class="course-open" data-course="${i}">학습 내용 살펴보기 ↗</button>`:''}</article>`).join('')}</div>`;}
   function renderList(query=''){
     const found=data.filter(d=>(d.name+d.tag).includes(query.trim()));
     list.innerHTML=found.length?found.map(d=>`<button class="department" data-id="${d.id}" aria-pressed="${selected.id===d.id}"><span aria-hidden="true">${d.icon}</span><b>${d.name}</b><small>${d.tag}</small></button>`).join(''):'<p role="status">일치하는 학과가 없습니다. 다른 검색어를 입력해 주세요.</p>';
     list.querySelectorAll('button').forEach(b=>b.onclick=()=>{selected=data.find(d=>d.id===b.dataset.id);active=0;renderList(document.querySelector('#departmentSearch').value);renderDetail();});
   }
   function renderDetail(){
+    detail.dataset.view=String(active);
     let body='';
     const scenes=[['반도체 공정 실습','클린룸에서 제조 공정의 흐름을 경험해요.'],['반도체 장비 실습','장비 구조를 살펴보고 운영 원리를 배워요.'],['반도체 설계 · SW 실습','코드와 회로로 반도체 시스템을 구현해요.'],['소재 · 분석 실습','웨이퍼와 박막의 특성을 관찰해요.'],['측정 · 분석 실습','측정 결과를 해석하고 품질을 이해해요.'],['프로젝트 기반 수업','함께 만들고 문제를 해결하는 경험을 쌓아요.']];
     const gallery=`<div class="photo-grid">${scenes.map(([title,copy],i)=>`<button class="photo-card" data-photo="${i}"><div class="photo p${i}" role="img" aria-label="${title} AI 생성 예시 사진"></div><h3>${title}</h3><p>${copy}</p></button>`).join('')}</div>`;
@@ -25,10 +26,16 @@
     if(active===3)body=cards(selected.equipment,'교육용 장비 예시입니다. 해당 캠퍼스의 실제 보유 장비와 위치를 확인한 뒤 반영합니다.');
     if(active===4)body='<article class="card"><h3>교수진 소개 준비 중</h3><p>캠퍼스에서 확인한 교수 성명·전문분야·담당 교과목·승인된 사진을 등록할 예정입니다.</p></article>';
     if(active===5)body=cards(selected.jobs,'관련 직무 예시입니다. 실제 채용 조건과 필요한 역량은 공식 채용 안내로 확인합니다.')+'<p class="note">취업지원 담당 부서와 공식 채용 링크는 캠퍼스 확인 후 연결합니다.</p>';
-    detail.innerHTML=`<div class="detail-head"><div><h2>${active===0?'배움의 현장을 만나보세요':selected.name+' · '+labels[active]}</h2><p>${selected.name} · ${selected.tag}</p></div><span class="badge">CAMPUS LEARNING</span></div><nav class="tabs" aria-label="학과 상세 메뉴">${labels.map((l,i)=>`<button data-tab="${i}" aria-pressed="${i===active}">${l}</button>`).join('')}</nav><div aria-live="polite">${body}</div><div class="related"><button id="nextSection">${active===5?'학과 소개 다시 보기':labels[active+1]+' 이어서 보기'} →</button><a href="/">반도체 공정맵 보기</a></div>`;
+    detail.innerHTML=`<div class="detail-head"><div><span class="detail-eyebrow">YOUR NEXT CHAPTER</span><h2>${selected.name}</h2><p>${selected.intro}</p></div><span class="badge">${selected.tag}</span></div><nav class="tabs" aria-label="학과 상세 메뉴">${labels.map((l,i)=>`<button data-tab="${i}" aria-pressed="${i===active}">${l}</button>`).join('')}</nav><div aria-live="polite">${body}</div><div class="related"><button id="nextSection">${active===5?'학과 소개 다시 보기':labels[active+1]+' 이어서 보기'} →</button><a href="/">이 배움은 어떤 공정으로 이어질까요? ↗</a></div>`;
     detail.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>{active=Number(b.dataset.tab);renderDetail();});
     detail.querySelector('#nextSection').onclick=()=>{active=(active+1)%labels.length;renderDetail();};
     detail.querySelectorAll('[data-go]').forEach(b=>b.onclick=()=>{active=Number(b.dataset.go);renderDetail();});
+    detail.querySelectorAll('[data-course]').forEach(b=>b.onclick=()=>{
+      const i=Number(b.dataset.course),popup=document.createElement('dialog');
+      popup.className='course-dialog';
+      popup.innerHTML=`<button class="dialog-close" aria-label="상세 닫기">닫기 ×</button><span class="detail-eyebrow">COURSE EXPLORER · 시연 예시</span><h2>${selected.courses[i]}</h2><p>${selected.intro}</p><h3>이런 실습으로 배워요</h3><p>${selected.practice[i]}</p><h3>함께 살펴볼 장비</h3><p>${selected.equipment[i]}</p><h3>연결되는 진로</h3><p>${selected.jobs[i]}</p><small>실제 교과목·담당 교수·개설 학기는 캠퍼스 확인 후 등록합니다.</small>`;
+      document.body.append(popup);popup.querySelector('button').onclick=()=>popup.close();popup.addEventListener('close',()=>popup.remove());popup.showModal();
+    });
     detail.querySelectorAll('[data-photo]').forEach(b=>b.onclick=()=>{
       const i=Number(b.dataset.photo), popup=document.createElement('dialog');
       popup.style.cssText='border:0;border-radius:16px;padding:20px;max-width:850px;width:90vw;color:#163458';
@@ -40,3 +47,4 @@
   renderList();renderDetail();
   document.querySelectorAll('[data-section]').forEach(a=>a.addEventListener('click',()=>{active=Number(a.dataset.section);renderDetail();}));
 })();
+
